@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Agência Aurora Viagens</title>
+<style>
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f4f9;
+    color: #222;
+    line-height: 1.6;
+  }
+  a {
+    color: inherit; text-decoration: none;
+  }
+  header {
+    background: linear-gradient(135deg, #00C894, #00A8CC, #7C4DFF);
+    color: #fff;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  header h1 {
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+  }
+  nav {
+    display: flex;
+    gap: 24px;
+    font-weight: 600;
+  }
+  nav a:hover {
+    text-decoration: underline;
+  }
+
+  /* Hero Slogan */
+  .hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(125deg, #7C4DFF 0%, #00A8CC 50%, #00C894 100%);
+    color: white;
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+  }
+  
+  /* Vitrine Destinos */
+  .destinos {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+  .destinos h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+  }
+  .grid-destinos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .destino-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgb(0 0 0 / 0.15);
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .destino-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 25px rgb(0 0 0 / 0.25);
+  }
+  .destino-img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+  }
+  .destino-info {
+    padding: 16px;
+    background: linear-gradient(45deg, #FFE156, #FF6F3C);
+    color: #1a1a1a;
+    font-weight: 700;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  .destino-sub {
+    margin-top: 8px;
+    font-weight: 400;
+    font-size: 0.95rem;
+    color: #3a3a3a;
+  }
+
+  /* Reservas */
+  .reservas {
+    background: white;
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 30px 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgb(0 0 0 / 0.1);
+  }
+  .reservas h2 {
+    color: #007f99;
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 2rem;
+  }
+  .reserva-card {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 18px;
+    background: #e0f7f9;
+    padding: 16px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px rgba(0,0,0,0.08);
+  }
+  .reserva-img {
+    width: 100px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  .reserva-info {
+    flex-grow: 1;
+    font-weight: 600;
+    color: #004d59;
+  }
+  .reserva-date {
+    color: #007f99;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+
+  /* Depoimentos */
+  .depoimentos {
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #7C4DFF, #00A8CC);
+    border-radius: 12px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(124, 77, 255, 0.35);
+  }
+  .depoimentos h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    font-weight: 700;
+  }
+  .depo-card {
+    background: rgba(255 255 255 / 0.15);
+    padding: 24px 20px;
+    border-radius: 10px;
+    max-width: 700px;
+    margin: 0 auto 24px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    font-style: italic;
+    position: relative;
+  }
+  .depo-card::before {
+    content: "“";
+    font-size: 3rem;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    opacity: 0.2;
+    font-weight: 900;
+  }
+  .depo-name {
+    margin-top: 12px;
+    font-weight: 700;
+    font-style: normal;
+    text-align: right;
+    font-size: 1.1rem;
+  }
+  .depo-photo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    position: absolute;
+    bottom: 12px;
+    left: 20px;
+    border: 2px solid white;
+  }
+
+  /* Planejador de Viagens CTA */
+  .planejador {
+    margin: 80px auto 80px;
+    background: linear-gradient(125deg, #00C894, #FF2D95);
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+    border-radius: 20px;
+    max-width: 900px;
+    box-shadow: 0 15px 40px rgba(0,200,148,0.6);
+  }
+  .planejador h2 {
+    font-size: 2.6rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    letter-spacing: 0.08em;
+  }
+  .planejador p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 36px;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .btn-planear {
+    background-color: #FF6F3C;
+    border: none;
+    padding: 16px 48px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 8px 20px rgba(255,111,60,0.6);
+    color: white;
+  }
+  .btn-planear:hover {
+    background-color: #e05220;
+  }
+
+  /* Footer simples */
+  footer {
+    text-align: center;
+    padding: 20px;
+    background: #222;
+    color: #ddd;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 600px) { 
+    .hero {
+      font-size: 1.8rem;
+      padding: 40px 10px;
+    }
+    .destino-info {
+      font-size: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Aurora Viagens</h1>
+  <nav>
+    <a href="#destinos">Destinos</a>
+    <a href="#reservas">Reservas</a>
+    <a href="#depoimentos">Depoimentos</a>
+    <a href="#planejador">Contato</a>
+  </nav>
+</header>
+
+<section class="hero" aria-label="Slogan da Aurora Viagens">
+  Descubra o mundo com cores que encantam
+</section>
+
+<section class="destinos" id="destinos" aria-label="Vitrine de destinos">
+  <h2>Explore os Destinos dos Seus Sonhos</h2>
+  <div class="grid-destinos" role="list">
+    <article class="destino-card" role="listitem" tabindex="0">
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Praia paradisíaca com mar azul e areia branca" class="destino-img" />
+      <div class="destino-info">
+        Fernando de Noronha
+        <div class="destino-sub">Paraísos Tropicais</div>
+      </div>
+    </article>
+    <article class="destino-card" role="listitem" tabindex="0">
+      <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=600&q=80" alt="Montanhas cobertas de neve e céu azul claro" class="destino-img" />
+      <div class="destino-info" style="background: linear-gradient(45deg, #00C894, #FFFFFF); color:#1a1a1a;">
+        Alpes Suíços
+        <div class="destino-sub" style="color:#333;">Aventuras nas Montanhas</div>
+      </div>
+    </article>
+    <article class="destino-card" role="listitem" tabindex="0">
+      <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=600&q=80" alt="Vista aérea de skyline urbano moderno à noite" class="destino-img" />
+      <div class="destino-info" style="background: linear-gradient(45deg, #FF6F3C, #FFE156); color:#1a1a1a;">
+        Nova York
+        <div class="destino-sub" style="color:#444;">Cidades cheias de vida</div>
+      </div>
+    </article>
+    <article class="destino-card" role="listitem" tabindex="0">
+      <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=600&q=80" alt="Selva verde com rio sinuoso visto de cima" class="destino-img" />
+      <div class="destino-info" style="background: linear-gradient(45deg, #00A8CC, #7C4DFF); color:#fff;">
+        Amazônia
+        <div class="destino-sub" style="color:#e0e0ff;">Natureza e Aventura</div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="reservas" id="reservas" aria-label="Prévia das reservas recentes">
+  <h2>Reservas Recentes</h2>
+  <div class="reserva-card">
+    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=100&q=80" alt="Foto de Fernando de Noronha" class="reserva-img" />
+    <div class="reserva-info">Joana Silva reservou uma experiência em Fernando de Noronha</div>
+    <div class="reserva-date">Maio 2026</div>
+  </div>
+  <div class="reserva-card">
+    <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=100&q=80" alt="Foto dos Alpes Suíços" class="reserva-img" />
+    <div class="reserva-info">Carlos Nunes planejou trilha nos Alpes Suíços</div>
+    <div class="reserva-date">Setembro 2026</div>
+  </div>
+</section>
+
+<section class="depoimentos" id="depoimentos" aria-label="Depoimentos de viajantes">
+  <h2>O que nossos viajantes dizem</h2>
+  <article class="depo-card" tabindex="0" aria-label="Depoimento de Mariana">
+    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Foto da viajante Mariana" class="depo-photo" />
+    <p>
+      A viagem transformou minha vida! Atendimento impecável e roteiros personalizados que superaram minhas expectativas.
+    </p>
+    <div class="depo-name">— Mariana Costa</div>
+  </article>
+  <article class="depo-card" tabindex="0" aria-label="Depoimento de Pedro">
+    <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Foto do viajante Pedro" class="depo-photo" />
+    <p>
+      Uma experiência inesquecível! Descobri lugares que jamais imaginaria com a ajuda da Aurora Viagens.
+    </p>
+    <div class="depo-name">— Pedro Albuquerque</div>
+  </article>
+</section>
+
+<section class="planejador" id="planejador" aria-label="Planejador de viagens e chamada para ação">
+  <h2>Comece a planejar sua próxima aventura agora</h2>
+  <p>Customizamos seu roteiro ideal para você explorar o mundo sem preocupações. Conte com a gente para tornar seus sonhos realidade!</p>
+  <button class="btn-planear" onclick="alert('Em breve, você poderá planejar sua viagem aqui!')">Planejar Viagem</button>
+</section>
+
+<footer>
+  &copy; 2026 Aurora Viagens. Todos os direitos reservados.
+</footer>
+
+</body>
+</html>
